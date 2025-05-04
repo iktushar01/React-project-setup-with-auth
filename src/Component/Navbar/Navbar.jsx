@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom'; // ✅ fixed
+import { NavLink, useNavigate } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 
 const Navbar = () => {
@@ -9,7 +9,7 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Home', to: '/' },
     { name: 'About', to: '/about' },
-    { name: 'blog', to: '/blog'}
+    { name: 'Blog', to: '/blog' }
   ];
 
   return (
@@ -40,10 +40,16 @@ const Navbar = () => {
           ))}
 
           {/* Buttons */}
-          <button onClick={()=>navigate("/signin")} className="px-5 py-2 text-sm rounded bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 transition">
+          <button
+            onClick={() => navigate("/signin")}
+            className="px-5 py-2 text-sm rounded bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 transition"
+          >
             Sign in
           </button>
-          <button onClick={()=>navigate("/signup")} className="px-5 py-2 text-sm font-semibold rounded bg-violet-600 text-white hover:bg-violet-700 transition">
+          <button
+            onClick={() => navigate("/signup")}
+            className="px-5 py-2 text-sm font-semibold rounded bg-violet-600 text-white hover:bg-violet-700 transition"
+          >
             Sign up
           </button>
         </nav>
@@ -70,10 +76,22 @@ const Navbar = () => {
             </NavLink>
           ))}
           <div className="flex space-x-2 mt-4">
-            <button onClick={()=>navigate("/signin")} className="w-full px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600">
+            <button
+              onClick={() => {
+                setIsOpen(false);
+                navigate("/signin");
+              }}
+              className="w-full px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600"
+            >
               Sign in
             </button>
-            <button onClick={()=>navigate("/signup")} className="w-full px-4 py-2 rounded bg-violet-600 text-white hover:bg-violet-700">
+            <button
+              onClick={() => {
+                setIsOpen(false);
+                navigate("/signup");
+              }}
+              className="w-full px-4 py-2 rounded bg-violet-600 text-white hover:bg-violet-700"
+            >
               Sign up
             </button>
           </div>

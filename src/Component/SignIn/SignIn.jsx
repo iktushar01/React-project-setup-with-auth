@@ -1,5 +1,7 @@
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { auth } from '../../Firebase/firebase-config';
 
 const SignIn = () => {
     const handleLogin = (e) => {
@@ -10,12 +12,24 @@ const SignIn = () => {
 
         console.log('Email:', email);
         console.log('Password:', password);
+        signInWithEmailAndPassword(auth,email,password)
+        .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+            console.log(user)
+            // ...
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode,errorMessage)
+          });
     };
 
     return (
         <div className="min-h-[calc(100vh-138px)] flex items-center justify-center bg-gray-100">
             <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-sm">
-                <h2 className="text-2xl font-bold text-center mb-6">Login to your account</h2>
+                <h2 className="text-2xl font-bold text-center mb-6">Sign in to your account</h2>
                 <form onSubmit={handleLogin}>
                     <div className="mb-4">
                         <label className="block text-gray-700 mb-1">Email</label>
@@ -44,8 +58,8 @@ const SignIn = () => {
                 </form>
                 <p className="text-sm text-center text-gray-700">
                     Don't have an account?{' '}
-                    <Link to="/auth/register" className="text-black font-semibold hover:underline">
-                        Register
+                    <Link to="/signup" className="text-black font-semibold hover:underline">
+                        Sign Up
                     </Link>
                 </p>
             </div>
